@@ -17,7 +17,9 @@ productRouter.post('/', async (req, res) => {
 productRouter.get('/', async (req, res) => {
     try {
         let products = await productManager.getProducts();
-        res.send(products);
+        res.render('index',
+            {products} 
+        )
     } catch (error) {
         console.log(error)
         res.send('Error')

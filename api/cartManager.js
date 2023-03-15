@@ -47,7 +47,7 @@ class CartManager {
 
     }
 
-    addProductToCart = async (cid, pid) => {
+    /*addProductToCart = async (cid, pid) => {
         let cart = await this.getCartById(cid);
         let carts = await this.getAll();
 
@@ -59,6 +59,26 @@ class CartManager {
 
         fs.writeFileSync(this.path, JSON.stringify(carts))
 
+    }*/
+
+    addProductToCart = async (cid, pid) => {
+        let cart = await this.getCartById(cid);
+        let product = await productos.getProductById(pid);
+        let existingProductIndex = cart.products.findIndex(p => p.product == pid);
+      
+        if (existingProductIndex != -1) {
+          // Si el producto ya existe en el carrito, aumentamos la cantidad en uno
+          cart.products[existingProductIndex].quantity += 1;
+        } else {
+          // Si el producto no existe en el carrito, lo agregamos como un objeto
+          cart.products.push({product: pid, quantity: 1});
+        }
+      
+        // Actualizamos el archivo que contiene la información de los carritos
+        let carts = await this.getAll();
+        let cartPosition = carts.findIndex(element => element.id == cid);
+        carts[cartPosition] = cart;
+        fs.writeFileSync(this.path, JSON.stringify(carts));
     }
 
 };
