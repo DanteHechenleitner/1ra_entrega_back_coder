@@ -5,7 +5,18 @@ import cartsRouter from './routes/carts.js';
 import __dirname from './utils.js';
 import handlebars from 'express-handlebars';
 import { Server } from 'socket.io';
-import ProductManager from './api/productManager.js';
+import ProductManager from './dao/fileManager/api/productManager.js';
+
+
+import routerProducts from './routes/productsM.js';
+
+//MongoDB
+import { init } from './dao/mongoDB/mongoDB.js';
+
+//Mongo
+//import ProductManagerM from './dao/mongoManager/productsModel.js';
+
+init()
 
 //se instancian las dependencias
 const app = express ();
@@ -24,8 +35,19 @@ app.use(express.static(__dirname + '/public'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
+//Mongo
+app.use("/mongo", routerProducts)
+
+
+
 app.use('/api/carts', cartsRouter)
 app.use('/home.handlebars', productRouter) //ruta con handlebars
+
+app.use('/api', productRouter)
+
+
+
 
 //VISTA CON WEBSOCKET!!
 app.get('/realtimeproducts', (req, res) => {

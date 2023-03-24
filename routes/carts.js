@@ -1,5 +1,5 @@
 import express from 'express';
-import CartManager from '../api/cartManager.js';
+import CartManager from '../dao/fileManager/api/cartManager.js';
 
 const cartsRouter = express.Router();
 const cartManager = new CartManager();
@@ -19,7 +19,7 @@ res.send('Producto agregado')
 })
 
 cartsRouter.get('/:id', async(req,res) =>{
-    let ud = req.params.id;
+    let id = req.params.id;
     let carts = await cartManager.getCartById(id)
     res.send(carts)
 }

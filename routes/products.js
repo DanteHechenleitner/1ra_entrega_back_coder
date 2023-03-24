@@ -1,8 +1,10 @@
 import express from 'express';
-import ProductManager from '../api/productManager.js';
+import ProductManager from '../dao/fileManager/api/productManager.js';
 
 const productRouter = express.Router();
 const productManager = new ProductManager();
+
+
 
 productRouter.post('/', async (req, res) => {
     try {
@@ -59,3 +61,15 @@ productRouter.delete('/:pid', async (req, res) =>{
 })
 
 export default productRouter;
+
+
+
+/*
+{ "name":"Ranger 260",
+"price":6852,
+"category":"Motosoldadora",
+"code":01,
+"description":"Motosoldadora",
+"thumbnail":"Va foto",
+"stock":5
+}*/
