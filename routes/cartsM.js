@@ -11,6 +11,7 @@ routerCarts.use(express.json())
 
 routerCarts
 .post('/carts',(req,res)=> {cartsManagerM.createCarts(req, res)})
+.get('/get/carts', (req,res) => {cartsManagerM.getCarts(req, res)} )
 
 
 export default routerCarts

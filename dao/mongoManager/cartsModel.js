@@ -8,6 +8,11 @@ class cartsManagerM{
         const result = await cartsModel.create(body)
         res.status(201).json(result)
     }
+
+    static async getCarts(req,res){
+        const result = await cartsModel.find().populate('product')
+        res.status(200).json(result)
+    }
 }
 
 export default cartsManagerM

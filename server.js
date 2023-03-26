@@ -43,6 +43,8 @@ app.use("/mongo", routerProducts)
 app.use('/home.handlebars', routerProducts) //ruta con handlebars
 app.use("/mongo", routerCarts)
 
+
+
 /*---------------------------------*/
 app.use('/api/carts', cartsRouter)
 //app.use('/home.handlebars', productRouter) //ruta con handlebars
