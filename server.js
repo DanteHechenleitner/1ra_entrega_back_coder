@@ -8,9 +8,11 @@ import { Server } from 'socket.io';
 import ProductManager from './dao/fileManager/api/productManager.js';
 
 
-import routerProducts from './routes/productsM.js';
 
 //MongoDB
+import routerProducts from './routes/productsM.js';
+import routerCarts from './routes/cartsM.js';
+
 import { init } from './dao/mongoDB/mongoDB.js';
 
 //Mongo
@@ -36,13 +38,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-//Mongo
+//Crear producto en la DB de Mongo
 app.use("/mongo", routerProducts)
+app.use('/home.handlebars', routerProducts) //ruta con handlebars
+app.use("/mongo", routerCarts)
 
-
-
+/*---------------------------------*/
 app.use('/api/carts', cartsRouter)
-app.use('/home.handlebars', productRouter) //ruta con handlebars
+//app.use('/home.handlebars', productRouter) //ruta con handlebars
 
 app.use('/api', productRouter)
 

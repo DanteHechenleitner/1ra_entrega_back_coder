@@ -8,8 +8,12 @@ const routerProducts = express.Router()
 routerProducts.use(express.json())
 
 //EN LAS RUTAS SIEMPRE /MONGO/...
-//la ruta para postear en la db seria localhost:8080/mongo/api
-routerProducts.post('/api', (req,res)=> {ProductManagerM.create(req, res)})
+routerProducts
+.post('/api', (req,res)=> {ProductManagerM.create(req, res)})
+.get('/get', (req,res) => {ProductManagerM.getAll(req, res)} )
+.put('/:id', (req,res) => {ProductManagerM.updataById(req, res)})
+.delete('/:id', (req,res) => {ProductManagerM.deleteById(req, res)})
+
 
 
 

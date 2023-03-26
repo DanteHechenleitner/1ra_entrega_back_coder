@@ -1,5 +1,5 @@
 
-import express from 'express'
+/*import express from 'express'
 import routerProducts from './routes/productsM.js'
 import { init } from './dao/mongoDB/mongoDB.js'
 import handlebars from 'express-handlebars'
@@ -29,4 +29,4 @@ app.set('views', __dirname + '/views')
 
 app.use('/mongo', routerProducts)
 
-export default app
+export default app*/
