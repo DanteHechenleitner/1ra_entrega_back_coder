@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 export const init = async ()=> {
     try {
         const URI= "mongodb+srv://Dante:Dante3284@cluster0.o6ehdpy.mongodb.net/ecommerce?retryWrites=true&w=majority"

@@ -26,6 +26,31 @@ class ProductManagerM {
         res.status(204).end()
     }
 
+    static async filtroCategory(req,res){
+        const { params: {category}} = req;
+        const result = await ProductsModel.aggregate([
+            {  $match: {category: category}},
+            {  $group: {
+                _id: 1,
+                productos: {$push: {name: "$name", price:"$price", stock: "$stock"}}
+            }}
+          ],
+          
+        )
+        res.status(200).json(result)
+    }
+
+
+    static async paginate(req,res){
+        const {query: {limit=1, page=1}} = req;
+        const options ={
+            limit, 
+            page
+        }
+        const result = await ProductsModel.paginate({}, options);
+        res.status(200).json(result)
+        
+    }
 }
 
 export default ProductManagerM
