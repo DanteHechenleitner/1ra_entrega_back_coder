@@ -1,5 +1,9 @@
 class communsUtils{
     static busResponds(data){
+        let paramSort= ""
+        if(data.sort){
+            paramSort= `&sort=${data.sort}`
+        }
         return{
             status:"success",
             payload: data.docs,
@@ -9,8 +13,8 @@ class communsUtils{
             page: data.page,
             hasPrevPage: data.hasPrevPage,
             hasNextPage: data.hasNextPage,
-            prevLink: !data.hasPrevPage ? null : `http://localhost:8080/mongo/get?limit=${data.limit}&page=${data.prevPage}`,
-            nextLink: !data.hasNextPage ? null : `http://localhost:8080/mongo/get?limit=${data.limit}&page=${data.nextPage}`,
+            prevLink: !data.hasPrevPage ? null : `http://localhost:8080/mongo/get?limit=${data.limit}&page=${data.prevPage}${paramSort}`,
+            nextLink: !data.hasNextPage ? null : `http://localhost:8080/mongo/get?limit=${data.limit}&page=${data.nextPage}${paramSort}`,
 
 
         }

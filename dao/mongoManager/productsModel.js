@@ -44,10 +44,13 @@ class ProductManagerM {
 
 
     static async paginateM(req,res){
-        const {query: {limit=1, page=1}} = req;
+        const {query: {limit=1, page=1, sort}} = req;
         const options ={
             limit,
-            page
+            page,
+        }
+        if(sort){
+            options.sort= {price: sort}
         }
         const result = await ProductsModel.paginate({},options);
         res.status(200).json(communsUtils.busResponds(result))
