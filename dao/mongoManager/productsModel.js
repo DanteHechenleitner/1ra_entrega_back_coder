@@ -2,6 +2,8 @@
 
 import ProductsModel from "../models/productoSchema.js";
 
+import communsUtils from "../../communs.js"; 
+
 class ProductManagerM {
     static async create(req, res) {
         const {body} = req
@@ -41,14 +43,14 @@ class ProductManagerM {
     }
 
 
-    static async paginate(req,res){
+    static async paginateM(req,res){
         const {query: {limit=1, page=1}} = req;
         const options ={
-            limit, 
+            limit,
             page
         }
-        const result = await ProductsModel.paginate({}, options);
-        res.status(200).json(result)
+        const result = await ProductsModel.paginate({},options);
+        res.status(200).json(communsUtils.busResponds(result))
         
     }
 }
