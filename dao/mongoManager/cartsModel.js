@@ -10,8 +10,10 @@ class cartsManagerM{
     }
 
     static async getCarts(req,res){
-        const result = await cartsModel.find().populate('products.product')
-        res.status(200).json(result)
+        const result = await cartsModel.find().populate('products.product').lean()
+        //res.status(200).json(result)
+        res.render('cartsDB', { carts: result });
+        
     }
 
 

@@ -41,7 +41,7 @@ app.use(express.urlencoded({ extended: true }));
 //Crear producto en la DB de Mongo
 app.use("/mongo", routerProducts)
 app.use('/home.handlebars', routerProducts) //ruta con handlebars
-app.use("/mongo", routerCarts)
+app.use("/carrito", routerCarts)
 
 
 
@@ -74,11 +74,3 @@ socketServer.on('connection', (socket) => {
 
 console.log(socketServer.on)
 
-/*app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-app.use('/api/products', productRouter);
-app.use('/api/carts', cartsRouter)
-
-const PORT = 8080;
-app.listen(PORT, () =>  console.log("Running on 8080"));*/
