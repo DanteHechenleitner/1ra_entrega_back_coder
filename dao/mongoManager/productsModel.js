@@ -14,7 +14,7 @@ class ProductManagerM {
     static async getAll(req, res){
         const result = await ProductsModel.find().lean()
         //res.status(200).json(result)
-        res.render('productosDB',{productos: result})
+        res.render('productosDB',{result})
     }
 
     static async updataById(req, res){
@@ -42,7 +42,8 @@ class ProductManagerM {
         )
        
         //res.status(200).json(result)
-        res.render('productosDB', { productos: result });
+        res.render('productosDB', { result: result} );
+        console.log(...result)
     }
 
 
@@ -57,8 +58,8 @@ class ProductManagerM {
         }
         const result = await ProductsModel.paginate({},options);
         //res.status(200).json(communsUtils.busResponds(result))
-        res.render('productosDB', communsUtils.busResponds(result));
-        //console.log(result)
+        res.render('productosDB', communsUtils.busResponds({...result}));
+        console.log(communsUtils.busResponds({...result}))
         
     }
 }

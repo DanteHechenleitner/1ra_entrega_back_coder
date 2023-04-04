@@ -11,7 +11,7 @@ routerCarts.use(express.json())
 
 routerCarts
 .post('/carts',(req,res)=> {cartsManagerM.createCarts(req, res)})
-.get('/get/carts', (req,res) => {cartsManagerM.getCarts(req, res)} )
+.get('/:id', (req,res) => {cartsManagerM.getCarts(req, res)} )
 .post('/post/carts', (req,res) => {cartsManagerM.addToCart(req, res)})
 .put('/put/carts', (req,res) => {cartsManagerM.removeFromCart(req, res)} )
 .delete('/carts/:cartId', (req,res) => {cartsManagerM.deleteCart(req, res)} )
