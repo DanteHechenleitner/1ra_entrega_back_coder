@@ -40,9 +40,10 @@ class ProductManagerM {
           ],
           
         )
+  
        
         //res.status(200).json(result)
-        res.render('productosDB', { result: result} );
+        res.render('productosDB', ...result);
         console.log(...result)
     }
 
@@ -58,8 +59,8 @@ class ProductManagerM {
         }
         const result = await ProductsModel.paginate({},options);
         //res.status(200).json(communsUtils.busResponds(result))
-        res.render('productosDB', communsUtils.busResponds({...result}));
-        console.log(communsUtils.busResponds({...result}))
+        res.render('productosPaginado', communsUtils.busResponds(result));
+        console.log(communsUtils.busResponds(result))
         
     }
 }

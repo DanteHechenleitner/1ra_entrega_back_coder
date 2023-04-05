@@ -6,7 +6,7 @@ class communsUtils{
         }
         return{
             status:"success",
-            payload: data.docs,
+            payload: JSON.parse(JSON.stringify(data.docs)),
             totalPages: data.totalPages,
             prevPage: data.prevPage,
             nextPage: data.nextPage,
