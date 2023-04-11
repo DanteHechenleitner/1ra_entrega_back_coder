@@ -1,0 +1,15 @@
+<article>
+  <h1>Registro de usuario</h1>
+  {{#if error }}
+    <p>{{error}}</p>
+  {{/if}}
+  <form action="/api/sessions/register" method="POST">
+    <input type="text" name="first_name" placeholder="Nombre">
+    <input type="text" name="last_name" placeholder="Apellido">
+    <input type="email" name="email" placeholder="Correo">
+    <input type="number" name="age" placeholder="Edad">
+    <input type="password"  name="password" placeholder="Contraseña">
+    <p>Ir a <a href="/login">login</a></p>
+    <button type="submit">Registrar</button>
+  </form>
+</article>

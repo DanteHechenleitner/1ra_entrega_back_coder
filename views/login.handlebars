@@ -1,0 +1,13 @@
+<article>
+  <h1>Login de usuario</h1>
+  {{#if error }}
+    <p>{{error}}</p>
+  {{/if}}
+  <form action="/api/sessions/login" method="POST">
+    <input type="text" name="email" placeholder="Correo">
+    <input type="password"  name="password" placeholder="Contraseña">
+    <p><a href="/reset-password">Olvidé mi contraseña</a></p>
+    <p>Quiero <a href="/register">registrarme</a></p>
+    <button type="submit">Entrar</button>
+  </form>
+</article>

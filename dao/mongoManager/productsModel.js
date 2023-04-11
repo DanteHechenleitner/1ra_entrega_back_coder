@@ -4,6 +4,7 @@ import ProductsModel from "../models/productoSchema.js";
 
 import communsUtils from "../../communs.js"; 
 
+
 class ProductManagerM {
     static async create(req, res) {
         const {body} = req
@@ -14,7 +15,8 @@ class ProductManagerM {
     static async getAll(req, res){
         const result = await ProductsModel.find().lean()
         //res.status(200).json(result)
-        res.render('productosDB',{result})
+        res.render('profile',{result})
+        console.log(result)
     }
 
     static async updataById(req, res){

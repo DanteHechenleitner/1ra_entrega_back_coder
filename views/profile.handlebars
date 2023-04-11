@@ -1,7 +1,11 @@
-<div>
-  <h2 class="titulo1">PRODUCTOS</h2>
-</div>
+<h1>Bienvenido</h1>
 
+<p>Nombre: {{first_name}}</p>
+<p>Apellido: {{last_name}}</p>
+<p>Correo: {{email}}</p>
+<p>Edad: {{age}}</p> 
+
+<a href="/api/sessions/logout" role="button">Logout</a>
 
 <table>
   <thead>
@@ -12,7 +16,7 @@
     </tr>
   </thead>
   <tbody>
-    {{#each porductos}}
+    {{#each result}}
       <tr>
         <td>{{this.name}}</td>
         <td>{{this.price}}</td>

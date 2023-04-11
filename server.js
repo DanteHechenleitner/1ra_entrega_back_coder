@@ -15,6 +15,13 @@ import routerCarts from './routes/cartsM.js';
 
 import { init } from './dao/mongoDB/mongoDB.js';
 
+//import routerSessions from "./dao/mongoManager/indexSessions.js"
+import routerSessions from "./routes/sessions.js"
+
+
+import expressSession from 'express-session'
+import MongoStore from 'connect-mongo'
+
 //Mongo
 //import ProductManagerM from './dao/mongoManager/productsModel.js';
 
@@ -51,6 +58,23 @@ app.use('/api/carts', cartsRouter)
 
 app.use('/api', productRouter)
 
+
+
+////Mongo Store
+
+app.use(expressSession({
+    store: MongoStore.create({
+      mongoUrl: "mongodb+srv://Dante:Dante3284@cluster0.o6ehdpy.mongodb.net/ecommerce?retryWrites=true&w=majority",
+      mongoOptions: {},
+      ttl: 20,
+    }),
+    secret:"asd",
+    resave: false,
+    saveUninitialized: false,
+}))
+
+
+app.use("/", routerSessions)
 
 
 
