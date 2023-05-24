@@ -22,6 +22,11 @@ import routerSessions from "./routes/sessions.js"
 import expressSession from 'express-session'
 import MongoStore from 'connect-mongo'
 
+
+///Se importa passport
+import initPassport from './config/passportConfig.js';
+import passport from 'passport';
+
 //Mongo
 //import ProductManagerM from './dao/mongoManager/productsModel.js';
 
@@ -74,8 +79,12 @@ app.use(expressSession({
 }))
 
 
-app.use("/", routerSessions)
+initPassport()
 
+app.use(passport.initialize())
+app.use(passport.session())
+app.use("/", routerSessions)
+//app.use('/private', routerSessions)
 
 
 //VISTA CON WEBSOCKET!!
@@ -97,4 +106,7 @@ socketServer.on('connection', (socket) => {
 })
 
 console.log(socketServer.on)
+
+
+
 
