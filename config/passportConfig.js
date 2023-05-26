@@ -1,8 +1,19 @@
 import passport from 'passport'
 import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as GithubStrategy } from 'passport-github2'
+import { Strategy as JWTStrategy, ExtractJwt } from 'passport-jwt'
 import UserModel from '../dao/models/userSchema.js'
 import { createHash, validatePassword } from '../Utils/index.js'
+
+const JWT_SECRET = "2$V;.w;ri[DfvyH,t_VV2Yd%HW#Lx&kv.N;c8unON3Ot905Sm5"
+
+function cookieExtractor(req) {
+  let token = null
+  if (req && req.cookies) {
+    token = req.cookies.token
+  }
+  return token
+}
 
 const initPassport = () => {
 
@@ -100,6 +111,13 @@ const initPassport = () => {
       } catch (error) {
         return done(new Error('Error al obtener el usuario:' + error.message))
       }
+    }))
+
+    passport.use('jwt', new JWTStrategy({
+      jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
+      secretOrKey: JWT_SECRET,
+    }, (payload, done) => {
+      return done(null, payload)
     }))
   
     passport.serializeUser((user, done) => {

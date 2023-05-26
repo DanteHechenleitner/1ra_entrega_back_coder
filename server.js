@@ -27,6 +27,10 @@ import MongoStore from 'connect-mongo'
 import initPassport from './config/passportConfig.js';
 import passport from 'passport';
 
+/// Se importan las cookis
+
+import cookieParser from 'cookie-parser'
+
 //Mongo
 //import ProductManagerM from './dao/mongoManager/productsModel.js';
 
@@ -79,12 +83,19 @@ app.use(expressSession({
 }))
 
 
+/*----------COOKIE-----------------------*/
+app.use(cookieParser())
+
+/*----------PASSPORT--------------*/
+
 initPassport()
 
 app.use(passport.initialize())
 app.use(passport.session())
 app.use("/", routerSessions)
 //app.use('/private', routerSessions)
+
+
 
 
 //VISTA CON WEBSOCKET!!

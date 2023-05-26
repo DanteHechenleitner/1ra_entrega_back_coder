@@ -6,6 +6,7 @@ export const tokenGenerator = (user) => {
   const payload = {
     name: user.fullname,
     email: user.email,
+    rol: user.role
   }
   const token = jsonwebtoken.sign(payload, JWT_SECRET, { expiresIn: '24h' })
   return token

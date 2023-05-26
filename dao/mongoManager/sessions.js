@@ -3,7 +3,6 @@ import passport from 'passport'
 import UserModel from '../models/userSchema.js'
 import { createHash, validatePassword } from '../../Utils/index.js'
 
-
 const router = Router()
 
 
@@ -62,6 +61,7 @@ router.get('/github/callback',passport.authenticate('github', {failureRedirect: 
     res.redirect('/profile')
   }
 )
+
 
 
 
