@@ -16,6 +16,15 @@ router.post('/register', passport.authenticate('register', {failureRedirect:'/re
   res.redirect('/login')
 }),
 
+router.get('/me', (req,res) => {
+  const { id } = req.user
+  if (!id) {
+      return res.status(404).end()
+  }
+  res.status(200).json(result)
+})
+
+
 router.get('/logout', (req, res) => {
   req.session.destroy(error => {
     if (!error) {

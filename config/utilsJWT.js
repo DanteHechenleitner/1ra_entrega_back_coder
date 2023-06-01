@@ -4,9 +4,11 @@ const JWT_SECRET = "2$V;.w;ri[DfvyH,t_VV2Yd%HW#Lx&kv.N;c8unON3Ot905Sm5"
 
 export const tokenGenerator = (user) => {
   const payload = {
-    name: user.fullname,
+    name: user.first_name,
+    last_name: user.last_name,
     email: user.email,
-    rol: user.role
+    age: user.age,
+    rol: user.role,
   }
   const token = jsonwebtoken.sign(payload, JWT_SECRET, { expiresIn: '24h' })
   return token

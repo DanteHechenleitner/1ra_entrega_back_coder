@@ -52,6 +52,10 @@ router.get('/private', authMiddleware('jwt'), authentionMiddleware('usuario'), (
   res.json({ success: true, message: 'This is a private route.', user: req.user })
 })
 
+router.get('/me', authMiddleware('jwt'), authentionMiddleware('usuario', 'admin'), (req, res) => {
+  res.json({user: req.user})
+})
+
 router.post('/login', async (req, res) => {
   const { body: { email, password } } = req
   const user = await UserModel.findOne({ email })
