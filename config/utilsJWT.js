@@ -1,6 +1,6 @@
 import jsonwebtoken from "jsonwebtoken"
 
-const JWT_SECRET = "2$V;.w;ri[DfvyH,t_VV2Yd%HW#Lx&kv.N;c8unON3Ot905Sm5"
+//const JWT_SECRET = "2$V;.w;ri[DfvyH,t_VV2Yd%HW#Lx&kv.N;c8unON3Ot905Sm5"
 
 export const tokenGenerator = (user) => {
   const payload = {
@@ -10,13 +10,13 @@ export const tokenGenerator = (user) => {
     age: user.age,
     rol: user.role,
   }
-  const token = jsonwebtoken.sign(payload, JWT_SECRET, { expiresIn: '24h' })
+  const token = jsonwebtoken.sign(payload, process.env.JWT_SECRET, { expiresIn: '24h' })
   return token
 }
 
 export const isValidToken = (token) => {
   return new Promise((resolve) => {
-    jsonwebtoken.verify(token, JWT_SECRET, (error, payload) => {
+    jsonwebtoken.verify(token, process.env.JWT_SECRET, (error, payload) => {
       if (error) {
         console.log('err', error)
         return resolve(false)

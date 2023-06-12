@@ -31,6 +31,11 @@ import passport from 'passport';
 
 import cookieParser from 'cookie-parser'
 
+
+///DotEnv
+import { config } from 'dotenv';
+config()
+
 //Mongo
 //import ProductManagerM from './dao/mongoManager/productsModel.js';
 
@@ -39,8 +44,8 @@ init()
 //se instancian las dependencias
 const app = express ();
 
-const PORT = 8080;
-const httpServer = app.listen(PORT, () => console.log("Running on 8080"));
+const PORT = process.env.PORT_NODE || 3000;
+const httpServer = app.listen(PORT, () => console.log("Running on " + PORT));
 const socketServer = new Server(httpServer)
 const productManager = new ProductManager();
 
@@ -73,7 +78,7 @@ app.use('/api', productRouter)
 
 app.use(expressSession({
     store: MongoStore.create({
-      mongoUrl: "mongodb+srv://Dante:Dante3284@cluster0.o6ehdpy.mongodb.net/ecommerce?retryWrites=true&w=majority",
+      mongoUrl: process.env.MONGO_URI, ///"mongodb+srv://Dante:Dante3284@cluster0.o6ehdpy.mongodb.net/ecommerce?retryWrites=true&w=majority",
       mongoOptions: {},
       ttl: 20,
     }),
