@@ -7,6 +7,10 @@ import handlebars from 'express-handlebars';
 import { Server } from 'socket.io';
 import ProductManager from './dao/fileManager/api/productManager.js';
 
+//MOCK, COMPRESSION Y ERROR
+import routerMock from './mockingproducts/router/mockingproducts.js';
+import compression from 'express-compression'
+import MiddlewareError from './mockingproducts/utils/errors/MiddlewareError.js';
 
 
 //MongoDB
@@ -122,6 +126,30 @@ socketServer.on('connection', (socket) => {
 })
 
 console.log(socketServer.on)
+
+//MOCKING, COMPRESSION Y ERROR
+app.use(compression({
+    brotli:{enabled: true, zlib:{}}
+}))
+app.use(MiddlewareError)
+app.use('/', routerMock)
+  
+app.use((err, req, res, next) => {
+    /* console.log(err) */
+    res 
+      .status(err.statusCode || 500)
+      .json({success: false, message: err.message})
+})
+  
+app.get('/loggerTest', (req, res) => {
+   // req.logger.fatal('Esto fue un fatal')  LO COMENTO PQ POR MOMENTOS LO RECONOCE Y POR MOMENTOS NO
+    req.logger.error('Esto fue un error')
+    req.logger.warn('Esto fue un warn')
+    req.logger.info('Esto fue un info')
+    req.logger.http('Esto fue un http')
+    req.logger.debug('Esto fue un debug')
+    res.send('<h1>Hello world!</h1>')
+})
 
 
 
