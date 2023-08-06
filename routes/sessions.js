@@ -14,13 +14,13 @@ routerSessions
 
 export default routerSessions*/
 
-import { Router } from 'express'
+/*import { Router } from 'express'
 import passport from 'passport'
 
 import sessionsApiRouter from '../dao/mongoManager/sessions.js'
 import sessionsViewsRouter from '../dao/mongoManager/viewsSessions.js'
 import { tokenGenerator, isValidToken } from '../config/utilsJWT.js'
-import { createHash, validatePassword } from '../Utils/index.js'
+import Utils from '../Utils/index.js'
 import UserModel from '../dao/models/userSchema.js'
 import {authMiddleware, authentionMiddleware} from '../config/utilsCookie.js'
 
@@ -48,11 +48,11 @@ router.get('/private', JWTAuth, (req, res) => {
 
 ///// Utilizando Cokies clase 22
 
-router.get('/private', authMiddleware('jwt'), authentionMiddleware('usuario'), (req, res) => {
+/*router.get('/api/sessions', authMiddleware('jwt'), authentionMiddleware('user','admin'), (req, res) => {
   res.json({ success: true, message: 'This is a private route.', user: req.user })
 })
 
-router.get('/me', authMiddleware('jwt'), authentionMiddleware('usuario', 'admin'), (req, res) => {
+router.get('/me', authMiddleware('jwt'), authentionMiddleware('user', 'admin'), (req, res) => {
   res.json({user: req.user})
 })
 
@@ -62,7 +62,7 @@ router.post('/login', async (req, res) => {
   if(!user) {
     return res.status(401).json({ success: false, message: 'Email or password is incorrect.' })
   }
-  if(!validatePassword(password, user)) {
+  if(!Utils.validatePassword(password, user)) {
     return res.status(401).json({ success: false, message: 'Email or password is incorrect.' })
   }
   const token = tokenGenerator(user)
@@ -80,7 +80,7 @@ router.post('/register', async (req, res) => {
   if (user) {
     return res.status(400).json({ success: false, message: 'Email already exists.' })
   }
-  user = await UserModel.create({ fullname, email, password: createHash(password) })
+  user = await UserModel.create({ fullname, email, password: Utils.createHash(password) })
   res.status(201).json({ success: true })
 })
 
@@ -91,4 +91,4 @@ router.post('/sign-out', (req, res) => {
 
 
 
-export default router
+export default router*/

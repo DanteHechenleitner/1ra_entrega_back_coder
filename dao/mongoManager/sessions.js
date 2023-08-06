@@ -1,7 +1,7 @@
-import { Router } from 'express'
+/*import { Router } from 'express'
 import passport from 'passport'
 import UserModel from '../models/userSchema.js'
-import { createHash, validatePassword } from '../../Utils/index.js'
+import Utils from '../../Utils/index.js'
 
 const router = Router()
 
@@ -57,7 +57,7 @@ router.post('/reset-password', async (req, res) => {
     return res.render('reset-password', { error: 'Email no existe.' })
   }
 
-  user.password = createHash(password)
+  user.password = Utils.createHash(password)
 
   await UserModel.updateOne({ email }, user) // Option 1
 
@@ -74,4 +74,4 @@ router.get('/github/callback',passport.authenticate('github', {failureRedirect: 
 
 
 
-export default router
+export default router*/

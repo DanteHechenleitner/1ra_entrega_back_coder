@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <article>
+    <h1>Users Management</h1>
+    {{#if error }}
+        <p>{{error}}</p>
+    {{/if}}
+
+    <table id="main" role="grid">
+  <tr>
+    <th>Id</th>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Email</th>
+    <th>Rol</th>
+  </tr>
+
+    <tr>
+      <td id="id-user">{{this._id}}</td>
+      <td>{{this.first_name}}</td>
+      <td>{{this.last_name}}</td>
+      <td>{{this.email}}</td>
+      <td>{{this.role}}</td>
+    </tr>
+    </table>
+<form id="form-delete">
+  <button type="submit">Eliminar</button>
+</form>
+<form id="form-change">
+  <button type="submit">Cambiar Rol</button>
+</form>
+</article>
+<script>
+    const formDelete = document.getElementById('form-delete');
+    const formChange = document.getElementById('form-change');
+    const id_user = document.getElementById('id-user');
+    const id = id_user.textContent;
+
+    formDelete.addEventListener('submit', async function(event) {
+      event.preventDefault();
+      console.log(id)
+
+      fetch(`http://localhost:8080/mongou/${id}`, {
+        method: 'DELETE'
+      })
+      .then(function(raw) {raw.json()})
+      .then(function(data){
+        alert('Usuario Borrado')
+        window.location.href = `http://localhost:8080/management/${id}`
+        console.log(data)
+      })
+    })
+
+    formChange.addEventListener('submit', async function(event) {
+      event.preventDefault();
+      console.log(id)
+
+      fetch(`http://localhost:8080/mongou/management/${id}`, {
+        method: 'GET'
+      })
+      .then(function(raw) {raw.json()})
+      .then(function(data){
+        alert('Rol Cambiado')
+        window.location.href = `http://localhost:8080/management/${id}`
+        console.log(data)
+      })
+    })
+
+</script>
+</body>
+</html>

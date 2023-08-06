@@ -3,7 +3,7 @@ import { Strategy as LocalStrategy } from 'passport-local'
 import { Strategy as GithubStrategy } from 'passport-github2'
 import { Strategy as JWTStrategy, ExtractJwt } from 'passport-jwt'
 import UserModel from '../dao/models/userSchema.js'
-import { createHash, validatePassword } from '../Utils/index.js'
+import Utils from '../Utils/index.js'
 
 //const JWT_SECRET = "2$V;.w;ri[DfvyH,t_VV2Yd%HW#Lx&kv.N;c8unON3Ot905Sm5"
 
@@ -64,7 +64,7 @@ const initPassport = () => {
           last_name,
           email,
           age,
-          password: createHash(password),
+          password: Utils.createHash(password),
         })
         
         done(null, user)
@@ -83,7 +83,7 @@ const initPassport = () => {
           return done(null, false)
         }
       
-        if (!validatePassword(password, user)) {
+        if (!Utils.validatePassword(password, user)) {
           return done(null, false)
         }
       

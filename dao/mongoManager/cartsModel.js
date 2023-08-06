@@ -1,11 +1,13 @@
 import mongoose from "mongoose";
 import cartsModel from "../models/cartsSchema.js";
+import Carts from "../cartsDao.js";
+import Products from "../productsDao.js"
 
 
 class cartsManagerM{
     static async createCarts(req, res){
         const {body} = req
-        const result = await cartsModel.create(body)
+        const result = await Carts.createCart(body)
         res.status(201).json(result)
     }
 

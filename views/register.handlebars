@@ -3,7 +3,7 @@
   {{#if error }}
     <p>{{error}}</p>
   {{/if}}
-  <form action="/api/sessions/register" method="POST">
+  <form action="/register" method="POST">
     <input type="text" name="first_name" placeholder="Nombre">
     <input type="text" name="last_name" placeholder="Apellido">
     <input type="email" name="email" placeholder="Correo">
@@ -13,3 +13,5 @@
     <button type="submit">Registrar</button>
   </form>
 </article>
+
+/api/sessions/register

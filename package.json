@@ -8,7 +8,7 @@
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "", 
   "license": "ISC",
   "dependencies": {
     "@faker-js/faker": "^8.0.2",

@@ -20,7 +20,15 @@ import routerCarts from './routes/cartsM.js';
 import { init } from './dao/mongoDB/mongoDB.js';
 
 //import routerSessions from "./dao/mongoManager/indexSessions.js"
-import routerSessions from "./routes/sessions.js"
+//import routerSessions from "./routes/sessions.js"
+import routerLog from './routes/login.js';
+import router from './dao/mongoManager/viewsSessions.js';
+import authRouter from './routes/auth.js';
+import routerViewUsers from './routes/indexUsers.js';
+import Utils from './Utils/index.js';
+
+//Usiarios admin-premium 3° entega
+import routerUsers from './routes/usersDB.js';
 
 
 import expressSession from 'express-session'
@@ -101,7 +109,9 @@ initPassport()
 
 app.use(passport.initialize())
 app.use(passport.session())
-app.use("/", routerSessions)
+//app.use("/", routerSessions)
+
+app.use("/", router)
 //app.use('/private', routerSessions)
 
 
@@ -151,6 +161,9 @@ app.get('/loggerTest', (req, res) => {
     res.send('<h1>Hello world!</h1>')
 })
 
-
-
+/// probamos la ruras 3ra entrga
+app.use("/DB", routerUsers)
+app.use("/",authRouter)
+app.use("/", routerLog)
+//router.use('/', Utils.authJWTMiddleware(['admin']), routerViewUsers) //http://localhost:8080/users/management
 

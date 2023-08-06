@@ -8,7 +8,7 @@ export const tokenGenerator = (user) => {
     last_name: user.last_name,
     email: user.email,
     age: user.age,
-    rol: user.role,
+    role: user.role,
   }
   const token = jsonwebtoken.sign(payload, process.env.JWT_SECRET, { expiresIn: '24h' })
   return token
