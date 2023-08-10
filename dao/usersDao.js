@@ -43,14 +43,6 @@ class Users {
     }
 
 
-    /* static getUserByEmail(email) {
-         return userModel.findOne({email: email})
-     }
- 
-     static updatePassword(id, data) {
-         return userModel.updateOne({_id: id}, {password: data})
-     }*/
-
 }
 
 export default Users

@@ -6,7 +6,6 @@ import Utils from "../../Utils/index.js"
 const routerProducts = express.Router()
 routerProducts.use(express.json())
 
-//EN LAS RUTAS SIEMPRE /MONGO/...
 routerProducts
 .post('/post',Utils.authJWTMiddleware(['admin','premium']),(req,res)=> {ProductManagerM.create(req, res)}) 
 .get('/get', (req,res)=> {ProductManagerM.getAll(req, res)})

@@ -1,4 +1,3 @@
-//import Product from "../models/productoSchema.js";
 
 import ProductsSchema from "../models/productoSchema.js";
 import communsUtils from "../../Utils/communs.js"; 
@@ -154,9 +153,9 @@ class ProductManagerM {
             options.sort= {price: sort}
         }
         const result = await ProductsSchema.paginate({},options);
-        //res.status(200).json(communsUtils.busResponds(result))
+        
         res.render('productosPaginado', (communsUtils.busResponds(result)));
-        //console.log(communsUtils.busResponds(result))
+       
         
     }
 }

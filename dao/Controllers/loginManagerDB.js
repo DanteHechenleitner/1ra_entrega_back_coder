@@ -3,7 +3,7 @@ import Utils from "../../Utils/index.js"
 import bcrypt from 'bcrypt';
 import Carts from '../cartsDao.js';
 import Users from '../usersDao.js';
-//import { json } from 'express';
+
 
 class LoginsManager {
     static async login(req, res) {
@@ -32,9 +32,9 @@ class LoginsManager {
           await user.save(); // Guardar los cambios en la base de datos
         }
         
-        //res.json({ token });
+        
         res.redirect('/profile');
-        //res.render('profile', user)
+        
       } catch (error) {
         res.status(500).json({ error: 'Error al iniciar sesión' });
       }
@@ -61,7 +61,7 @@ class LoginsManager {
         newCart.user = newUser._id;
         await newCart.save();
     
-        ///res.json({ message: 'Usuario registrado exitosamente' });
+        
         res.redirect('/login')
       } catch (error) {
         res.status(500).json({ error: 'Error al registrar al usuario' });
@@ -87,7 +87,7 @@ class LoginsManager {
     
         await user.save(); // Guardar los cambios en la base de datos
     
-        //res.redirect('/login');
+       
         res.json({ message: 'Sesión cerrada exitosamente' });
       } catch (error) {
         res.status(500).json({ error: 'Error al cerrar la sesión' });
@@ -136,13 +136,6 @@ class LoginsManager {
       }
     }
   
-    /*static async validatePassword(password, user) {
-      return await bcrypt.compare(password, user.password);
-    }
-  
-    static createHash(password) {
-      return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
-    }*/
 }
   
 export default LoginsManager;

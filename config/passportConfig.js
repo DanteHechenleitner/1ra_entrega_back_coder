@@ -5,10 +5,6 @@ import { Strategy as JWTStrategy, ExtractJwt } from 'passport-jwt'
 import UserModel from '../dao/models/userSchema.js'
 import Utils from '../Utils/index.js'
 
-//const dotenv = require('dotenv');
-//dotenv.config();
-
-//const JWT_SECRET = "2$V;.w;ri[DfvyH,t_VV2Yd%HW#Lx&kv.N;c8unON3Ot905Sm5"
 
 function cookieExtractor(req) {
   let token = null
@@ -30,11 +26,11 @@ const initPassport = () => {
     }
   
 
-    /// Estos datos solo estan en plano tenporalmento, ya que no es seguro tenerlo asi
+   
     const githubOptions = {
-      clientID: process.env.GITHUB_CLIENT_ID, //"Iv1.38c83a7ace4ca1b7",
-      clientSecret: process.env.GITHUB_CLIENT_SECRET,//"23ef2a29f584789193f523c0357687c3ea721ffc",
-      callbackURL: process.env.GITHUB_CLIENT_CALLBACK//"http://localhost:8080/api/sessions/github/callback",
+      clientID: process.env.GITHUB_CLIENT_ID, 
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      callbackURL: process.env.GITHUB_CLIENT_CALLBACK
     }
   
     passport.use('register', new LocalStrategy(registerOptions, async (req, email, password, done) => {

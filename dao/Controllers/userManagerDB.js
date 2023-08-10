@@ -89,7 +89,7 @@ class UserManagerDB {
       res.cookie('token', token, {
         maxAge: 60 * 60 * 1000,
         httpOnly: true
-      }).status(200).render('profile', user)/*json({ success: true, access_token: token})*/
+      }).status(200).render('profile', user)
       
     }
   
@@ -182,24 +182,6 @@ class UserManagerDB {
           const productImage = req.files['productImage'] ? req.files['productImage'][0] : null;
           const document = req.files['document'] ? req.files['document'][0] : null;
   
-  
-          //FUNCIONA PERO OMITO EL STATUS PORQUE LO UTILIZO PARA VER SI EL USUARIO ESTA ACTIVO O INACTIVO
-          /* Verificar qué tipo de archivo se subió y actualizar el status del usuario
-          if (profileImage) {
-            user.status = 'profileImageUploaded';
-             Aquí puedes realizar alguna acción específica para el perfil de imagen
-          } else if (productImage) {
-            user.status = 'productImageUploaded';
-             Aquí puedes realizar alguna acción específica para la imagen del producto
-          } else if (document) {
-            user.status = 'documentUploaded';
-             Aquí puedes realizar alguna acción específica para el documento
-          } else {
-            Si no se subió ningún archivo válido
-            return res.status(400).json({ message: 'No se subió ningún archivo válido' });
-          }*/
-  
-          //await user.save();
   
           res.status(200).json({ message: 'Archivo subido exitosamente' });
         });
