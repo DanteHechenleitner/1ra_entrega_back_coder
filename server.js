@@ -43,7 +43,7 @@ import swaggerUi from 'swagger-ui-express';
 import { config } from 'dotenv';
 config()
 
-const PORT = process.env.PORT_NODE || 3000;
+const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
 
 init()
