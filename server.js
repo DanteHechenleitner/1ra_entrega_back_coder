@@ -56,7 +56,7 @@ const app = express ();
 
 app.use(expressSession({
     store: MongoStore.create({
-      mongoUrl: MONGO_URI, ///"mongodb+srv://Dante:Dante3284@cluster0.o6ehdpy.mongodb.net/ecommerce?retryWrites=true&w=majority",
+      mongoUrl: MONGO_URI, 
       mongoOptions: {},
       ttl: 20,
     }),
@@ -73,9 +73,7 @@ app.use(express.static('public'))
 app.use(cookieParser())
 
 
-const httpServer = app.listen(PORT, () => console.log("Running on " + PORT));
-
-//initS(httpServer)
+const httpServer = app.listen(PORT,"0.0.0.0", () => console.log("Running on " + PORT));
 
 
 const socketServer = new Server(httpServer)
@@ -122,7 +120,6 @@ app.use(MiddlewareError)
 app.use('/', routerMock)
   
 app.use((err, req, res, next) => {
-    /* console.log(err) */
     res 
       .status(err.statusCode || 500)
       .json({success: false, message: err.message})
@@ -130,7 +127,6 @@ app.use((err, req, res, next) => {
 
 
 app.get('/loggerTest', (req, res) => {
-    // req.logger.fatal('Esto fue un fatal')  LO COMENTO PQ POR MOMENTOS LO RECONOCE Y POR MOMENTOS NO
      req.logger.error('Esto fue un error')
      req.logger.warn('Esto fue un warn')
      req.logger.info('Esto fue un info')
