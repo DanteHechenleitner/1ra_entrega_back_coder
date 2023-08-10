@@ -45,6 +45,7 @@ config()
 
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
+const ENV = process.env.NODE_ENV 
 
 init()
 
@@ -73,7 +74,11 @@ app.use(express.static('public'))
 app.use(cookieParser())
 
 
-const httpServer = app.listen(PORT,"0.0.0.0", () => console.log("Running on " + PORT));
+//const httpServer = app.listen(PORT,"0.0.0.0", () => console.log("Running on " + PORT));
+
+let httpServer = app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server running in http://localhost:${PORT}/ in ${ENV} environment.`)
+})
 
 
 const socketServer = new Server(httpServer)
