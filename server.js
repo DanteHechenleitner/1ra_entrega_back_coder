@@ -44,7 +44,7 @@ import { config } from 'dotenv';
 config()
 
 const PORT = process.env.PORT || 3000;
-const MONGO_URI = process.env.MONGO_URI;
+const URI = process.env.MONGO_URI;
 const ENV = process.env.NODE_ENV 
 
 init()
@@ -57,7 +57,7 @@ const app = express ();
 
 app.use(expressSession({
     store: MongoStore.create({
-      mongoUrl: MONGO_URI, 
+      mongoUrl: URI, 
       mongoOptions: {},
       ttl: 20,
     }),
