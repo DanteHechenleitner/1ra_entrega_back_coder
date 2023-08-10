@@ -2,11 +2,11 @@ import { Router } from 'express';
 import userSchema from '../dao/models/userSchema.js';
 import bodyParser from 'body-parser';
 
-const routerViewUsers = Router();
+const routerVistaUsers = Router();
 
-routerViewUsers.use(bodyParser.urlencoded({ extended: true }))
+routerVistaUsers.use(bodyParser.urlencoded({ extended: true }))
 
-routerViewUsers.get('/management/:id', async(req, res) => {
+routerVistaUsers.get('/management/:id', async(req, res) => {
     try {
         const  { id }  = req.params
         const user = await userSchema.findById(id)
@@ -18,4 +18,4 @@ routerViewUsers.get('/management/:id', async(req, res) => {
     
 });
 
-export default routerViewUsers;
+export default routerVistaUsers;

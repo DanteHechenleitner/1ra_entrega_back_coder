@@ -1,0 +1,162 @@
+paths: 
+  /apiP/get/:
+    get:
+      summary: Listar productos
+      tags: 
+        - Products
+      responses: 
+        200:
+          description: Lista de productos
+          content: 
+            application/json: 
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Products'
+        500:
+          description: Error interno del servidor
+  /apiP/get/{id}:
+    get:
+      summary: Lista un producto a partir de su id
+      tags:
+        - Products
+      parameters: 
+        - in: path
+          name: id
+          required: true
+          description: Id del producto
+          schema:
+            $type: string 
+      responses:
+        200:
+          description: Producto encontrado
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+        400:
+          description: Producto no encontrado
+        500: 
+          description: Error interno del servidor
+    put:
+      summary: Actualiza un producto por su ID
+      tags:
+        - Products
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID del producto
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/updateProducts'
+      responses:
+        200:
+          description: Producto actualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+        404:
+          description: Productos no encontrado
+        500:
+          description: Error interno del servidor
+    delete:
+      summary: Elimina un producto por su ID
+      tags:
+        - Products
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID del producto
+          schema:
+            type: string
+      responses:
+        200:
+          description: Producto eliminado
+        404:
+          description: Producto no encontrado
+        500:
+          description: Error interno del servidor
+components: 
+  schemas:
+    Products:
+      type: object
+      properties:
+        _id: 
+          type: string
+          description: ID del Producto
+        name:
+          type: string
+          description: Nombre del Producto
+        price:
+          type: number
+          description: Precio del Producto
+        category: 
+          type: string
+          description: Categoria del Producto
+        code: 
+          type: number
+          description: Codigo del Producto
+        description: 
+          type: string
+          description: Descripcion del Producto 
+        thumbnail: 
+          type: string
+          description: Imagen del Producto
+        stock: 
+          type: number
+          description: Stock del Producto  
+        owner: 
+          type: string
+          description: Creador del Producto    
+      example:   
+        _id: 64205b0440e2c475c148ef69
+        name: Ranger 260
+        price: 6852
+        category: Motosoldadora
+        code: 123456
+        description: Motosoldadora
+        thumbnail: va imagen
+        stock: 10
+        owner: admin
+
+  requestBodies:
+    updateProducts:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Nombre del Producto
+        price:
+          type: number
+          description: Precio del Producto
+        category: 
+          type: string
+          description: Categoria del Producto
+        code: 
+          type: number
+          description: Codigo del Producto
+        description: 
+          type: string
+          description: Descripcion del Producto 
+        thumbnail: 
+          type: string
+          description: Imagen del Producto
+        stock: 
+          type: number
+          description: Stock del Producto  
+      example:
+        name: "Maveric 400"
+        price: 6852
+        category: "Motosoldadora"
+        code: 22536
+        description: "Motosoldadora"
+        thumbnail: "va imagen"
+        stock: 10

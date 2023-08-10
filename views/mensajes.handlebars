@@ -1,0 +1,19 @@
+<h1 class="titulo1">MENSAJES</h1>
+
+<ul id="list-messages">
+  {{#each mensajes}}
+    <li>
+      <p><strong>{{this.name}}</strong>: {{this.message}} {{this.mail}}</p>
+    </li>
+  {{/each}}
+</ul> 
+
+<form id="form-message">
+  <input type="text" name="fullname" id="input-fullname" placeholder="Ingresa tu nombre" required>
+  <input type="text" name="message" id="input-message" placeholder="Ingresa mensaje..." required>
+  <input type="text" name="mail" id="input-mail" placeholder="Ingresa tu mail..." required>
+  <button type="submit">Enviar</button>
+</form>
+
+<script src="{{socket}}" ></script>
+<script src="{{index}}" ></script>

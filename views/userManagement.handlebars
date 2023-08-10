@@ -46,7 +46,7 @@
       event.preventDefault();
       console.log(id)
 
-      fetch(`http://localhost:8080/mongou/${id}`, {
+      fetch(`http://localhost:8080/apiU/${id}`, {
         method: 'DELETE'
       })
       .then(function(raw) {raw.json()})
@@ -61,7 +61,7 @@
       event.preventDefault();
       console.log(id)
 
-      fetch(`http://localhost:8080/mongou/management/${id}`, {
+      fetch(`http://localhost:8080/apiU/management/${id}`, {
         method: 'GET'
       })
       .then(function(raw) {raw.json()})

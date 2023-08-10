@@ -1,7 +1,7 @@
-import emailService from "../services/email.service";
-import twilioService from "../services/twilio.service";
+import emailService from "../../services/email.service.js";
+import twilioService from "../../services/twilio.service.js";
 import { Router } from 'express';
-import { uploader } from "../utils"
+import { uploader } from "../../utils.js"
 
 
 const serviceRouter = Router()

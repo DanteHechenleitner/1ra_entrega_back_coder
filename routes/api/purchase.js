@@ -1,19 +1,18 @@
 import express from 'express';
 import { Router } from 'express';
 import { customAlphabet } from 'nanoid';
-import cartsSchema from '../dao/models/cartsSchema.js';
-import productoSchema from '../dao/models/productoSchema.js';
-import ticketModel from '../dao/models/ticketModel.js';
-import TicketService from '../services/ticket.service.js';
+import cartsSchema from '../../dao/models/cartsSchema.js';
+import productoSchema from '../../dao/models/productoSchema.js';
+import ticketSchema from '../../dao/models/ticketSchema.js';
+import TicketService from '../../services/ticket.service.js';
 
 const purchaseRouter = Router();
 
-//ruta //localhost:8080/:cid/purchase y paso por body {"cid"}
-purchaseRouter.post('/:cid/purchase', async (req, res) => {
-    const { cid } = req.params;
+purchaseRouter.post('/purchase/:cartsId', async (req, res) => {
+    const { cartsId } = req.params;
   
     try {
-      const cart = await cartsSchema.findById(cid).populate('products.product');
+      const cart = await cartsSchema.findById(cartsId).populate('products.product');
       if (!cart) {
         return res.status(404).json({ error: 'Cart not found' });
       }

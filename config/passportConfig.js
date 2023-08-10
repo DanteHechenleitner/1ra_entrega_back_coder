@@ -5,6 +5,9 @@ import { Strategy as JWTStrategy, ExtractJwt } from 'passport-jwt'
 import UserModel from '../dao/models/userSchema.js'
 import Utils from '../Utils/index.js'
 
+//const dotenv = require('dotenv');
+//dotenv.config();
+
 //const JWT_SECRET = "2$V;.w;ri[DfvyH,t_VV2Yd%HW#Lx&kv.N;c8unON3Ot905Sm5"
 
 function cookieExtractor(req) {

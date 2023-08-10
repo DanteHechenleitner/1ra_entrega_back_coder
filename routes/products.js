@@ -1,75 +1,37 @@
-import express from 'express';
-import ProductManager from '../dao/fileManager/api/productManager.js';
 
-const productRouter = express.Router();
-const productManager = new ProductManager();
+import { Router } from 'express'
+import ProductoSchema from '../dao/models/productoSchema.js';
+import communsUtils from '../Utils/communs.js';
 
+const routerProductVista = Router();
 
-
-productRouter.post('/', async (req, res) => {
-    try {
-        let product = req.body
-        let products = await productManager.addProduct(product);
-        res.send(product);
-    } catch (error) {
-        console.log(error);
-    }
-});
-
-productRouter.get('/', async (req, res) => {
-    try {
-        let products = await productManager.getProducts();
-        res.render('index',
-            {products} 
-        )
-    } catch (error) {
-        console.log(error)
-        res.send('Error')
-    }
-});
-
-productRouter.get('/:pid', async (req, res) => {
-    let pid = parseInt(req.params.pid)
-    let saveId = await productManager.getProductById(pid);
-    if (saveId){
-        res.send(saveId)
-    }else{
-        res.send('Producto no encontrado')
-    }
+routerProductVista
+.get('/total', async (req, res) => {
+    const productos = await ProductoSchema.find().lean()
+    console.log(productos)
+    res.render('productos', { productos: productos })
 })
 
-productRouter.put('/:pid', async (req, res) =>{
-    let pid = parseInt(req.params.pid)
-    let{campo, actualizacion} = req.body
-   
-    try {
-        let newProduct = productManager.updateProductById(pid, campo, actualizacion);
-        res.send("Producto Actualizado")
-    } catch (error) {
-        res.send("Producto no encontrado")
+.get('/:category', async (req, res) => {
+    const { category } = req.params;
+    const productos = await ProductoSchema.find({ category: category }).lean();
+    res.render('productos', { productos: productos });
+})
+  
+.get('/', async (req, res) => {
+    const { query: { limit = 1, page = 1, sort } } = req;
+    const options = {
+      limit,
+      page
     }
+    if (sort) {
+      options.sort = { price: sort }
+    }
+    const productos = await ProductoSchema.paginate({}, options)
+    res.render('productosPaginado', communsUtils.busResponds(productos));
 })
 
-productRouter.delete('/:pid', async (req, res) =>{
-    let pid = parseInt(req.params.pid)
-    try {
-        let deleteById = productManager.deleteProduct(pid)
-        res.send("Producto eliminado")
-    } catch (error) {
-        res.send('Producto no encontrado')
-    }
-})
-
-export default productRouter;
 
 
+export default routerProductVista;
 
-/*
-{ "name":"Ranger 260",
-"price":6852,
-"category":"Motosoldadora",
-"code":01,
-"description":"Motosoldadora",
-"thumbnail":"Va foto",
-"stock":5
-}*/

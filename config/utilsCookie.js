@@ -1,4 +1,4 @@
-import passport from 'passport'
+/*import passport from 'passport'
 
 export const authMiddleware =  (strategy) => (req, res, next) => {
     passport.authenticate(strategy, function (error, user, info) {  
@@ -18,4 +18,4 @@ export const authentionMiddleware = (rol) => (req, res, next) => {
       return res.status(403).json({ success: false, message: 'Forbidden' })
     }
     next()
-}
+}*/

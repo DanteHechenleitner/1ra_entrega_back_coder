@@ -1,15 +1,15 @@
-import { Router } from 'express'
+/*import { Router } from 'express'
 import passport from 'passport';
 
 const router = Router()
 
-/*const auth = (req, res, next) => {
+const auth = (req, res, next) => {
   if (req.user) {
     return next()
   }
   console.log(req.user)
   res.redirect('/login')
-}*/
+}
 
 router.get('/login', (req, res) => {
   res.render('login')
@@ -27,4 +27,4 @@ router.get('/profile', (req, res) => {
   res.render('profile')
 })
 
-export default router
+export default router*/

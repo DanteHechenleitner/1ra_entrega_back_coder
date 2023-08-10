@@ -3,7 +3,7 @@ import Utils from "../../Utils/index.js"
 import bcrypt from 'bcrypt';
 import Carts from '../cartsDao.js';
 import Users from '../usersDao.js';
-import { json } from 'express';
+//import { json } from 'express';
 
 class LoginsManager {
     static async login(req, res) {
@@ -20,7 +20,7 @@ class LoginsManager {
     
         // Actualizar el campo "status" del usuario a "active"
         user.status = 'active';
-    
+        
         // Actualizar el campo "last_connection" del usuario con la fecha y hora actual
         user.last_connection = new Date();
     
@@ -32,9 +32,9 @@ class LoginsManager {
           await user.save(); // Guardar los cambios en la base de datos
         }
         
-        res.json({ token });
-        //res.redirect('/profile', user);
-        res.render('profile', user)
+        //res.json({ token });
+        res.redirect('/profile');
+        //res.render('profile', user)
       } catch (error) {
         res.status(500).json({ error: 'Error al iniciar sesión' });
       }
@@ -70,10 +70,9 @@ class LoginsManager {
   
     // Solucionar el error LOGAUT
     static async logout(req, res) {
-      //try {
-        const { email } = req.user;        ;
-        //const { body: { email } } = req
-        console.log(email)
+      try {
+
+        const { body: { email } } = req
         const user = await Users.getUserLog({ email });
     
         if (!user) {
@@ -88,11 +87,11 @@ class LoginsManager {
     
         await user.save(); // Guardar los cambios en la base de datos
     
-        res.redirect('/login');
+        //res.redirect('/login');
         res.json({ message: 'Sesión cerrada exitosamente' });
-      /*} catch (error) {
+      } catch (error) {
         res.status(500).json({ error: 'Error al cerrar la sesión' });
-      }*/
+      }
     }
     
     static async current(req, res) {

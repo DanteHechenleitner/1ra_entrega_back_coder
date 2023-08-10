@@ -1,0 +1,185 @@
+paths:
+  /apiC/get/carts/:
+    get:
+      summary: Listar carritos
+      tags:
+        - Carts
+      responses:
+        200:
+          description: Lista de Carritos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Carts'
+        500:
+          description: Error interno del servidor
+
+  /apiC/get/{id}:
+    get:
+      summary: Lista un carrito a partir de su id
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: Id del carrito
+          schema:
+            type: string
+      responses:
+        200:
+          description: Carrito encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carts'
+        400:
+          description: Carrito no encontrado
+        500:
+          description: Error interno del servidor
+
+  /apiC/post/{id}:
+    post:
+      summary: Agregar un producto al carrito
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID del carrito
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pid:
+                  type: string
+                  description: ID del producto
+                cid:
+                  type: string
+                  description: ID del carrito
+              required:
+                - pid
+                - cid
+      responses:
+        200:
+          description: Producto agregado al carrito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carts'
+        404:
+          description: Carrito no encontrado
+        500:
+          description: Error interno del servidor
+  /apiC/put/{id}:
+    put:
+      summary: Eliminar un producto del carrito
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID del carrito
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pid:
+                  type: string
+                  description: ID del producto
+                cid:
+                  type: string
+                  description: ID del carrito
+              required:
+                - pid
+                - cid
+      responses:
+        200:
+          description: Producto eliminado del carrito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Carts'
+        404:
+          description: Carrito no encontrado
+        500:
+          description: Error interno del servidor  
+  /apiC/delete/{id}:
+    delete:
+      summary: Elimina un carrito por su ID
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID del carrito
+          schema:
+            type: string
+      responses:
+        200:
+          description: Carrito eliminado
+        404:
+          description: Carrito no encontrado
+        500:
+          description: Error interno del servidor
+
+components:
+  schemas:
+    Carts:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: ID del Carrito
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/Products'
+      example:
+        _id: "64d02a76e8b8c41dcde7042a"
+        products:
+          - product:
+              owner: "admin"
+              _id: "641c8e25052162d55aca5f29"
+              name: "Ranger 260"
+              price: 12000
+              category: "Motosoldadora"
+              code: 1
+              description: "Motosoldadora"
+              thumbnail: "va imagen"
+              createdAt: "2023-08-06T23:19:18.108Z"
+              updatedAt: "2023-08-08T23:18:20.251Z"
+              __v: 0
+              stock: 3
+            quantity: 3
+            _id: "64701f07b8fb5f2c974af11c"
+          - product:
+              owner: "admin"
+              _id: "64287177f745b50de974071f"
+              name: "Zapatilla"
+              price: 260
+              category: "Indumentaria"
+              code: 233
+              description: "Running"
+              thumbnail: "thumbnail"
+              createdAt: "2023-03-30T00:37:38.649Z"
+              updatedAt: "2023-03-30T00:43:57.999Z"
+              __v: 0
+              stock: 5
+            quantity: 1
+            _id: "64c6f5c30645da4811b42b04"

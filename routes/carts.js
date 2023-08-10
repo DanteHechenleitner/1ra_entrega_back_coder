@@ -1,28 +1,31 @@
-import express from 'express';
-import CartManager from '../dao/fileManager/api/cartManager.js';
+import express from "express"
 
-const cartsRouter = express.Router();
-const cartManager = new CartManager();
+import { uploader } from "../utils.js"
 
-cartsRouter.post('/', async(req,res) =>{
-    let cart = req.body;
-    let carts = await cartManager.addCart(cart);
-    res.send(carts);
+import cartsSchema from "../dao/models/cartsSchema.js"
 
-})
+const routerCartsVista = express.Router()
 
-cartsRouter.post('/:cid/product/:pid', async(req, res) =>{
-let cid = parseInt(req.params.cid);
-let pid = parseInt(req.params.pid);
-let cto = await cartManager.addProductToCart(cid, pid);
-res.send('Producto agregado')
-})
+//la ruta para llamar a un carrito con sus productos sería localhost:8080/carrito/:cid
+routerCartsVista.get('/:id', async (req, res) => {
+    try {
+      const { id } = req.params;
+  
+      const cart = await cartsSchema.findById(id).populate('products.product').lean();
+  
+      if (!cart) {
+        throw new Error(`CART ${id} NOT FOUND`);
+      }
+  
+      res.render('carts', { cart: cart });
+      console.log(JSON.stringify(cart, null, 2));
+  
+    } catch (error) {
+      console.error(error);
+      res.status(400).send(error.message);
+    }
+});
+  
 
-cartsRouter.get('/:id', async(req,res) =>{
-    let id = req.params.id;
-    let carts = await cartManager.getCartById(id)
-    res.send(carts)
-}
-)
+export default routerCartsVista
 
-export default cartsRouter;

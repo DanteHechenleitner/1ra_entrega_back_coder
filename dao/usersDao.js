@@ -37,6 +37,12 @@ class Users {
         return userSchema.find(last_connection)
     }
 
+
+    static getUserPremium(email, role) {
+        return userSchema.findOne(email, role)
+    }
+
+
     /* static getUserByEmail(email) {
          return userModel.findOne({email: email})
      }

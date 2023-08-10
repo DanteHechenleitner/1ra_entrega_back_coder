@@ -47,20 +47,6 @@ class CartManager {
 
     }
 
-    /*addProductToCart = async (cid, pid) => {
-        let cart = await this.getCartById(cid);
-        let carts = await this.getAll();
-
-        let cartPosition = carts.findIndex(element => element.id == cid);
-        let product = await productos.getProductById(pid);
-
-        cart.products.push(product[0]);
-        carts[cartPosition] = cart;
-
-        fs.writeFileSync(this.path, JSON.stringify(carts))
-
-    }*/
-
     addProductToCart = async (cid, pid) => {
         let cart = await this.getCartById(cid);
         let product = await productos.getProductById(pid);

@@ -1,6 +1,6 @@
 import { Router } from "express";
-import UserManagerDB from "../dao/mongoManager/userManagerDB.js";
-import Utils from "../Utils/index.js"
+import UserManagerDB from "../../dao/Controllers/userManagerDB.js";
+import Utils from "../../Utils/index.js"
 import passport from 'passport'
 const routerUsers = Router ()
 

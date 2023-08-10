@@ -1,17 +1,13 @@
 import { Router } from 'express';
-import LoginsManager from '../dao/mongoManager/loginManagerDB.js';
+import passport from 'passport';
 
-const routerLog = Router();
+const routerLogVista = Router();
 
-//Login
-routerLog.post('/login', LoginsManager.login);
-//Registro
-routerLog.post('/register', LoginsManager.register);
-//Logout
-routerLog.get('/logout', LoginsManager.logout);
-//Current
-routerLog.get('/current', LoginsManager.current);
-// Reset Password
-routerLog.post('/reset-password', LoginsManager.resetPassword);
+routerLogVista
+.get('/login', (req, res) => {res.render('login');})
+.get('/register', (req, res) => {res.render('register');})
+.get('/reset-password', (req, res) => {res.render('reset-password');})
+.get('/profile', (req, res) => {res.render('profile');})
+.get('/current', (req, res) => {res.render('profile');})
 
-export default routerLog;
+export default routerLogVista

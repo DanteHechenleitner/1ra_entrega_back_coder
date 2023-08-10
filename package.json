@@ -6,13 +6,16 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
+    "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "", 
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "@faker-js/faker": "^8.0.2",
     "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
+    "connect-flash": "^0.1.1",
     "connect-mongo": "^5.0.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.3.1",
@@ -23,6 +26,7 @@
     "faker": "^6.6.6",
     "handlebars": "^4.7.7",
     "jsonwebtoken": "^9.0.0",
+    "mongo-connect": "^0.0.6",
     "mongoose": "^7.0.2",
     "mongoose-paginate-v2": "^1.7.1",
     "multer": "^1.4.5-lts.1",
@@ -34,6 +38,9 @@
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
     "socket.io": "^4.6.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+    "sweetalert2": "^11.7.20",
     "twilio": "^4.13.0",
     "winston": "^3.10.0"
   }

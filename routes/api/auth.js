@@ -1,5 +1,5 @@
 import {Router} from 'express' 
-import UserManagerDB from '../dao/mongoManager/userManagerDB.js'
+import UserManagerDB from '../../dao/Controllers/userManagerDB.js'
 
 const authRouter = Router()
 

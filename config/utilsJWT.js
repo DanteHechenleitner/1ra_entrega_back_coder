@@ -1,4 +1,4 @@
-import jsonwebtoken from "jsonwebtoken"
+/*import jsonwebtoken from "jsonwebtoken"
 
 //const JWT_SECRET = "2$V;.w;ri[DfvyH,t_VV2Yd%HW#Lx&kv.N;c8unON3Ot905Sm5"
 
@@ -26,4 +26,4 @@ export const isValidToken = (token) => {
     })
     return token
   })
-}
+}*/

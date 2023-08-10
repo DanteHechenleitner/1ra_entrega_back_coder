@@ -1,9 +1,9 @@
-import ticketModel from "../dao/models/ticketModel";
+import ticketSchema from "../dao/models/ticketSchema.js";
 
 class TicketService{
-    static async cretateTiket(code, amount, purchaser){
+    static async createTicket(code, amount, purchaser){
         try{
-            const ticket = new ticketModel({
+            const ticket = new ticketSchema({
                 code,
                 amount,
                 purchaser,
